@@ -37,22 +37,28 @@ public class Main extends Application {
     settingButton.setPadding(Insets.EMPTY);
     headerBar.setTrailing(settingButton);
 
-    val contents = new BorderPane();
+    val tab1Contents = new BorderPane();
     val toolbar = new BorderPane();
     toolbar.setLeft(new Button("←"));
     toolbar.setCenter(new DatePicker());
     toolbar.setRight(new Button("→"));
-    contents.setTop(toolbar);
-    contents.setLeft(new Label("Left"));
-    contents.setCenter(new Label("Contents"));
-    contents.setRight(new Label("Right"));
+    tab1Contents.setTop(toolbar);
+    tab1Contents.setLeft(new Label("Left"));
+    tab1Contents.setCenter(new Label("tab 1 contents"));
+    tab1Contents.setRight(new Label("Right"));
+
+    val tab2Contents = new Label("tab 2 contents");
+
 
     val bottomMenu = new BorderPane(new Label("bottom menu"));
 
     val root = new BorderPane();
     root.setTop(headerBar);
-    root.setCenter(contents);
+    root.setCenter(tab1Contents);
     root.setBottom(bottomMenu);
+
+    tab1.setOnMouseClicked(e -> root.setCenter(tab1Contents));
+    tab2.setOnMouseClicked(e -> root.setCenter(tab2Contents));
 
     var scene = new Scene(root, 600, 400);
     stage.setTitle("Tabbed Window");
