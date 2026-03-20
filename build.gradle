@@ -1,0 +1,48 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'com.echzny.tabbedwindow'
+version = '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+  maven { url 'https://jitpack.io' }
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(25)
+  }
+}
+
+javafx {
+  version = '25'
+  modules = [ 'javafx.controls' ]
+}
+
+application {
+  mainClass = 'com.echzny.tabbedwindow.Main'
+  applicationDefaultJvmArgs = [
+    "-Djavafx.enablePreview=true",
+    "--enable-native-access=javafx.graphics",
+  ]
+}
+
+dependencies {
+  annotationProcessor "org.projectlombok:lombok:1.18.42"
+  compileOnly "org.projectlombok:lombok:1.18.42"
+  testCompileOnly("org.projectlombok:lombok:1.18.42")
+  testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
+  implementation 'com.github.Dansoftowner:jSystemThemeDetector:3.6'
+  implementation 'io.github.mkpaz:atlantafx-base:2.1.0'
+  testImplementation platform('org.junit:junit-bom:5.10.0')
+  testImplementation 'org.junit.jupiter:junit-jupiter'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+  useJUnitPlatform()
+}
